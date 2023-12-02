@@ -11,7 +11,13 @@ const sColTwo = document.querySelector(".strike-col-2");
 const sColThree = document.querySelector(".strike-col-3");
 const sDiagOne = document.querySelector(".strike-diag-1");
 const sDiagTwo = document.querySelector(".strike-diag-2");
+const charSelect = document.querySelector(".character-select");
+const header1 = document.querySelector(".p1-header");
+const header2 = document.querySelector(".p2-header");
+const selectionScreen = document.querySelector(".selection-screen");
 //State variables
+let player1 = "";
+let player2 = "";
 let playerOneTurn = true;
 let state = ["", "", "", "", "", "", "", "", ""];
 let turns = 0;
@@ -41,6 +47,13 @@ const isWinner = function () {
   else return [false, sColOne];
 };
 
+const selectionScreenReset = function () {
+  board.classList.add("hidden");
+  selectionScreen.classList.remove("hidden");
+  header1.classList.remove("hidden");
+  header2.classList.add("hidden");
+};
+
 // Function to reset the board state, current player turn, and board
 const boardReset = function (strikethrough) {
   // Reset state variables
@@ -48,10 +61,13 @@ const boardReset = function (strikethrough) {
   playerOneTurn = true;
   turns = 0;
 
+  // Reset Selection Screen
+  selectionScreenReset();
+
   // Reset Board
   board.querySelectorAll(".grid-box").forEach((box) => {
-    box.querySelector(".X").classList.add("hidden");
-    box.querySelector(".O").classList.add("hidden");
+    console.log(box.children);
+    if (box.children.length > 0) box.removeChild(box.children[0]);
   });
   strikethrough.classList.add("hidden");
 };
@@ -64,22 +80,26 @@ const boardReset = function (strikethrough) {
 const clickEvent = function (e) {
   // Local Scoped variables
   const squareNum = +e.target.closest(".grid-box").classList[0].slice(-1);
-  const active = playerOneTurn ? "X" : "O";
-  const inactive = !playerOneTurn ? "X" : "O";
-  const activeTarget = e.target
-    .closest(".grid-box")
-    .querySelector(`.${active}`);
-  const inactiveTarget = e.target
-    .closest(".grid-box")
-    .querySelector(`.${inactive}`);
+  const active = playerOneTurn ? player1 : player2;
 
+  const imgPlayer1 = document.createElement("img");
+  imgPlayer1.src = `./Assets/${player1}.PNG`;
+
+  const imgPlayer2 = document.createElement("img");
+  imgPlayer2.src = `./Assets/${player2}.PNG`;
+
+  const activeImg = playerOneTurn ? imgPlayer1 : imgPlayer2;
+
+  const activeTarget = e.target.closest(".grid-box");
+
+  console.log(activeTarget);
   // Check if the clicked square has already been selected
   if (
-    activeTarget.classList[1] === "hidden" &&
-    inactiveTarget.classList[1] === "hidden"
+    !(state[squareNum - 1] === player1) &&
+    !(state[squareNum - 1] === player2)
   ) {
     playerOneTurn = !playerOneTurn;
-    activeTarget.classList.remove("hidden");
+    activeTarget.appendChild(activeImg);
     state[squareNum - 1] = active;
     turns++;
 
@@ -88,7 +108,7 @@ const clickEvent = function (e) {
     if (isWin) {
       strikethrough.classList.remove("hidden");
       setTimeout(() => {
-        alert(`Player ${active} Wins!`);
+        alert(`${active} Wins!`);
         boardReset(strikethrough);
       }, 100);
     } else if (turns === 9)
@@ -97,7 +117,22 @@ const clickEvent = function (e) {
         boardReset(strikethrough);
       }, 100);
   }
+  console.log(state);
+};
+
+const selectEvent = function (e) {
+  if (header1.classList[1] === "hidden") {
+    player2 = e.target.alt;
+    selectionScreen.classList.add("hidden");
+    board.classList.remove("hidden");
+    return;
+  }
+  player1 = e.target.alt;
+  header1.classList.add("hidden");
+  header2.classList.remove("hidden");
 };
 
 // Listen for the click event on the board and feed the event into the callback clickEvent function
 board.addEventListener("click", (e) => clickEvent(e));
+
+charSelect.addEventListener("click", (e) => selectEvent(e));

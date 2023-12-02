@@ -150,3 +150,75 @@ body {
   right: 31.5%;
   transform: skewY(-45deg);
 }
+
+.selection-screen {
+  font-size: 30px;
+  align-self: start;
+}
+
+h1 {
+  margin: 30px;
+}
+
+img {
+  height: 150px;
+  width: 150px;
+  border-radius: 8px;
+}
+
+.character-select {
+  display: grid;
+  grid-template-columns: 3;
+}
+
+.character {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.paul {
+  grid-row: 1/2;
+  grid-column: 1/2;
+}
+
+.tye {
+  grid-row: 1/2;
+  grid-column: 2/3;
+}
+
+.evan {
+  grid-row: 1/2;
+  grid-column: 3/4;
+}
+
+.george {
+  grid-row: 2/3;
+  grid-column: 1/2;
+}
+
+.patrick {
+  grid-row: 2/3;
+  grid-column: 2/3;
+}
+
+.camille {
+  grid-row: 2/3;
+  grid-column: 3/4;
+}
+
+.peachy {
+  grid-row: 3/4;
+  grid-column: 1/2;
+}
+
+.jaden {
+  grid-row: 3/4;
+  grid-column: 2/3;
+}
+
+.anissa {
+  grid-row: 3/4;
+  grid-column: 3/4;
+}
