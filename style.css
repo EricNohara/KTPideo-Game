@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  display: grid;
+  grid-template-rows: 1fr;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(189, 211, 246);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: 3;
+}
+
+.hidden {
+  display: none;
+}
+
+.grid-box {
+  height: 150px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.s1 {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  border-right: 5px solid black;
+  border-bottom: 5px solid black;
+}
+
+.s2 {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  border-left: 5px solid black;
+  border-bottom: 5px solid black;
+  border-right: 5px solid black;
+}
+
+.s3 {
+  grid-column: 3/4;
+  grid-row: 1/2;
+  border-left: 5px solid black;
+  border-bottom: 5px solid black;
+}
+
+.s4 {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  border-top: 5px solid black;
+  border-right: 5px solid black;
+  border-bottom: 5px solid black;
+}
+
+.s5 {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  border: 5px solid black;
+}
+
+.s6 {
+  grid-column: 3/4;
+  grid-row: 2/3;
+  border-left: 5px solid black;
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
+}
+
+.s7 {
+  grid-column: 1/2;
+  grid-row: 3/4;
+  border-top: 5px solid black;
+  border-right: 5px solid black;
+}
+
+.s8 {
+  grid-column: 2/3;
+  grid-row: 3/4;
+  border-top: 5px solid black;
+  border-right: 5px solid black;
+  border-left: 5px solid black;
+}
+
+.s9 {
+  grid-column: 3/4;
+  grid-row: 3/4;
+  border-left: 5px solid black;
+  border-top: 5px solid black;
+}
+
+.O,
+.X {
+  font-size: 100px;
+  font-weight: bold;
+  color: black;
+}
+
+.strike {
+  position: absolute;
+  background-color: rgb(255, 0, 0);
+  height: 68%;
+  width: 10px;
+}
+
+.strike-row-1 {
+  width: 36%;
+  height: 10px;
+  top: 28%;
+}
+.strike-row-2 {
+  width: 36%;
+  height: 10px;
+  top: 51%;
+}
+.strike-row-3 {
+  width: 36%;
+  height: 10px;
+  top: 73%;
+}
+.strike-col-1 {
+  left: 38.5%;
+}
+.strike-col-2 {
+  left: 50%;
+}
+.strike-col-3 {
+  left: 62%;
+}
+.strike-diag-1 {
+  width: 36%;
+  height: 14px;
+  top: 50%;
+  left: 32.5%;
+  transform: skewY(45deg);
+}
+.strike-diag-2 {
+  width: 36%;
+  height: 14px;
+  top: 50%;
+  right: 31.5%;
+  transform: skewY(-45deg);
+}
