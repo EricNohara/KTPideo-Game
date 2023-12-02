@@ -66,7 +66,6 @@ const boardReset = function (strikethrough) {
 
   // Reset Board
   board.querySelectorAll(".grid-box").forEach((box) => {
-    console.log(box.children);
     if (box.children.length > 0) box.removeChild(box.children[0]);
   });
   strikethrough.classList.add("hidden");
@@ -116,7 +115,6 @@ const clickEvent = function (e) {
         boardReset(strikethrough);
       }, 100);
   }
-  console.log(state);
 };
 
 const selectEvent = function (e) {
