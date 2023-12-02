@@ -92,7 +92,6 @@ const clickEvent = function (e) {
 
   const activeTarget = e.target.closest(".grid-box");
 
-  console.log(activeTarget);
   // Check if the clicked square has already been selected
   if (
     !(state[squareNum - 1] === player1) &&
@@ -123,9 +122,15 @@ const clickEvent = function (e) {
 const selectEvent = function (e) {
   if (header1.classList[1] === "hidden") {
     player2 = e.target.alt;
-    selectionScreen.classList.add("hidden");
-    board.classList.remove("hidden");
-    return;
+    if (player2 !== player1) {
+      selectionScreen.classList.add("hidden");
+      board.classList.remove("hidden");
+      return;
+    } else {
+      alert("Please Select a Different Eboard Member");
+      player2 = "";
+      return;
+    }
   }
   player1 = e.target.alt;
   header1.classList.add("hidden");
